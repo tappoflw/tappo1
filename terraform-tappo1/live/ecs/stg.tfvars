@@ -1,0 +1,10 @@
+name    = "wscluster-stg"
+include_ssm = true
+ec2_ami_owners = "amazon"
+#ec2_ami_name_wildcard = "amzn-ami-*-amazon-ecs-optimized"
+ec2_ami_name_wildcard = "amzn2-ami-ecs-hvm-*"
+#relativa a cwd
+user_data_file_path = "/templates/ecs_ec2_user_data.sh"
+ec2_instance_type = "t3.micro"
+asg_min_size = 2
+asg_max_size = 4

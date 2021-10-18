@@ -22,6 +22,6 @@ terraform {
   }
 
   backend "s3" {
-    key = "terraform.network"
+    key = "terraform.ecs"
   }
 }
