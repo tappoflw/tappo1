@@ -1,5 +1,8 @@
 locals {
   user_data_file_path = "${path.cwd}/${var.user_data_file_path}"
+
+  data_terraform_remote_state_region = element(regex("(?m)^region = \"([a-zA-Z0-9\\-]+)\"", data.local_file.backend_hcl.content), 0)
+  data_terraform_remote_state_bucket = element(regex("(?m)^bucket = \"([a-zA-Z0-9\\-]+)\"", data.local_file.backend_hcl.content), 0)
 }
 
 module "ecs_ec2_role" {

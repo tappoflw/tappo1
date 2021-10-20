@@ -1,3 +1,7 @@
+data "local_file" "backend_hcl" {
+  filename = "${path.module}/../../backend.hcl"
+}
+
 data "terraform_remote_state" "network" {
   backend = "s3"
 
@@ -5,7 +9,8 @@ data "terraform_remote_state" "network" {
 
   config = {
     key    = "terraform.network"
-    region = element(regex("region = \"([a-zA-Z0-9\\-]+)\"", replace(file("${path.cwd}/../../backend.hcl"), "\n", " ")), 0)
-    bucket = element(regex("bucket = \"([a-zA-Z0-9\\-]+)\"", replace(file("${path.cwd}/../../backend.hcl"), "\n", " ")), 0)
+    region = local.data_terraform_remote_state_region
+    bucket = local.data_terraform_remote_state_bucket
   }
 }
+

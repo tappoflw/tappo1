@@ -21,16 +21,14 @@ data "template_file" "user_data" {
 module "asg" {
   source = "terraform-aws-modules/autoscaling/aws"
 
-  name                = var.name
-  lc_name             = var.name
-  instance_type       = var.ec2_instance_type
-  vpc_zone_identifier = var.vpc_zone_identifier
-  health_check_type   = "EC2"
-
-  min_size         = var.asg_min_size
-  max_size         = var.asg_max_size
-  desired_capacity = var.asg_min_size
-
+  name                      = var.name
+  lc_name                   = var.name
+  instance_type             = var.ec2_instance_type
+  vpc_zone_identifier       = var.vpc_zone_identifier
+  health_check_type         = "EC2"
+  min_size                  = var.asg_min_size
+  max_size                  = var.asg_max_size
+  desired_capacity          = var.asg_min_size
   use_lc                    = true
   create_lc                 = true
   lc_use_name_prefix        = true
@@ -39,5 +37,4 @@ module "asg" {
   security_groups           = var.sec_groups
   iam_instance_profile_name = var.iam_instance_profile_id
   wait_for_capacity_timeout = 0
-
 }
